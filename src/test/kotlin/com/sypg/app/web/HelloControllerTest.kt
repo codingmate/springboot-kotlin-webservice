@@ -25,4 +25,17 @@ class HelloControllerTest @Autowired /* 스프링이 관리하는 빈(Bean)을 �
             .andExpect(MockMvcResultMatchers.content().string(str)) // 응답 본문의 내용 "hello" 검증
             //.andDo(MockMvcResultHandlers.print())
     }
+
+    @Test
+    fun helloDto가_리턴된다() {
+        val name = "hello"
+        val amount = 1500
+
+        mvc.perform( MockMvcRequestBuilders.get("/hello/dto")
+            .param("name", name)
+            .param("amount", amount.toString()) ) // Int -> String
+            .andExpect( MockMvcResultMatchers.status().isOk )
+            .andExpect( MockMvcResultMatchers.jsonPath("$.name").value(name) )
+            .andExpect( MockMvcResultMatchers.jsonPath("$.amount").value(amount) )
+    }
 }
