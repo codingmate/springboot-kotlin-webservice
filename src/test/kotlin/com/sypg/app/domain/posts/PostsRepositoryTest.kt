@@ -18,7 +18,8 @@ class PostsRepositoryTest ( @Autowired val postsRepository: PostsRepository) {
         postsRepository.save(Posts(title = title, content = content, author="Dream Comes True"))
 
         //when
-        val postsList = postsRepository.findAll()
+        val postsList = postsRepository
+                            .findAll() // full scan posts
 
         //then
         val posts = postsList[0]
