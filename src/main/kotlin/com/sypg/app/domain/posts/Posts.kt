@@ -24,4 +24,5 @@ data class Posts ( // must have no arg contructor
     val content: String
 
     , val author: String? = null
-)
+) {
+}
