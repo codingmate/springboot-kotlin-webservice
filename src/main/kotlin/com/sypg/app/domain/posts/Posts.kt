@@ -14,15 +14,18 @@ data class Posts ( // must have no arg contructor
     @GeneratedValue( // PK 생성 규칙
         strategy = GenerationType.IDENTITY) // auto_increment
     @Column( name = "id")
-    val id: Long? = null // -> bigint in MySQL
-    , @Column ( // Optional
+    val id: Long? = null, // -> bigint in MySQL
+    @Column ( // Optional
         length = 500 // (default) VARCHAR(255) -> VARCHAR(500)
         , nullable = false )
-    val title: String
-    , @Column(columnDefinition = "TEXT" // VARCHAR -> TEXT
+    var title: String,
+    @Column(columnDefinition = "TEXT" // VARCHAR -> TEXT
         , nullable = false)
-    val content: String
-
-    , val author: String? = null
+    var content: String,
+    var author: String? = null
 ) {
+    fun update(title: String, content: String) {
+        this.title = title
+        this.content = content
+    }
 }
