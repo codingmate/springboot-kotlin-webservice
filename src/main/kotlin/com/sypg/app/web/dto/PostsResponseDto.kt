@@ -9,9 +9,9 @@ data class PostsResponseDto(
     private var author: String?
 ) {
     constructor (entity: Posts)
-            : this( entity.id,
-                    entity.title,
-                    entity.content,
-                    entity.author )
+            : this( id = entity.id,
+                    title = entity.title,
+                    content = entity.content,
+                    author = entity.author )
 
 }
