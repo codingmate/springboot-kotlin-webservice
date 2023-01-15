@@ -34,5 +34,11 @@ class PostsApiController (
         return postsService.findById(id)
     }
 
+    @GetMapping("/api/v1/posts")
+    fun testPosts(): String {
+        return PostsResponseDto(id = 1, title = "title", content = "content", author = "author").toString()
+    }
+
+
 
 }

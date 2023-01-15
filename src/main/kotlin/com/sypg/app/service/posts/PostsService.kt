@@ -29,7 +29,6 @@ class PostsService (
     fun findById(id: Long): PostsResponseDto {
         val entity = postsRepository.findById(id)
             .orElseThrow{ IllegalArgumentException("해당 게시글이 없습니다. id = $id") }
-
         return PostsResponseDto(entity)
     }
 }
