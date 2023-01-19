@@ -1,9 +1,9 @@
 package com.sypg.app.web
 
 import com.sypg.app.web.dto.HelloResponseDto
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+
+
 //import java.util.Optional
 
 @RestController
@@ -18,4 +18,13 @@ class HelloController {
 
         return HelloResponseDto(name, amount)
     }
+    
+    @GetMapping("/json")
+    @ResponseBody
+    fun json(  @RequestParam("a") a: String
+             , @RequestParam("b") b: String ): Any { // return Type Any 사용 가능
+        data class res(val a: String, val b: String)
+        return res(a, b)
+    }
+    
 }
