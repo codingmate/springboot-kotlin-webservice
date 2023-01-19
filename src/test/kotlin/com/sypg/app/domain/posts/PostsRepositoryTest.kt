@@ -7,6 +7,7 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import java.time.LocalDateTime
 
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS) // test 클래스 당 하나의 인스턴스 <- BeforeAll, AfterAll 사용을 위함
@@ -40,6 +41,27 @@ class PostsRepositoryTest ( @Autowired val postsRepository: PostsRepository) {
         Assertions.assertThat(posts.author).isEqualTo("Dream Comes True")
         Assertions.assertThat(posts.author).isNotEqualTo("test?")
 
+    }
+
+    @Test
+    fun BastTimeEntity_등록() {
+        //given
+        val now = LocalDateTime.of(2019,6,4,0,0,0)
+        postsRepository.save(
+            Posts( title = "title",
+                   content = "content",
+                   author = "author"
+        ))
+        //when
+        val postsList = postsRepository.findAll()
+
+        //then
+        val posts = postsList.get(0)
+
+        println(posts)
+
+        Assertions.assertThat(posts.createdDate).isAfter(now)
+        Assertions.assertThat(posts.lastModifiedDate).isAfter(now)
     }
 
 }
