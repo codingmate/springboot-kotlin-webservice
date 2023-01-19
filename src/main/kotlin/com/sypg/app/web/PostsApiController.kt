@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
 
 
@@ -23,6 +25,7 @@ class PostsApiController (
         return postsService.save(requestDto)
     }
 
+
     @PutMapping("/api/v1/posts/{id}")
     fun update( @PathVariable id: Long
               , @RequestBody requestDto: PostsUpdateRequestDto  ): Long {
@@ -33,12 +36,4 @@ class PostsApiController (
     fun findById(@PathVariable id: Long): PostsResponseDto{
         return postsService.findById(id)
     }
-
-    @GetMapping("/api/v1/posts")
-    fun testPosts(): String {
-        return PostsResponseDto(id = 1, title = "title", content = "content", author = "author").toString()
-    }
-
-
-
 }
