@@ -44,7 +44,7 @@ class PostsRepositoryTest ( @Autowired val postsRepository: PostsRepository) {
     }
 
     @Test
-    fun BastTimeEntity_등록() {
+    fun  `BastTimeEntity 등록`() {
         //given
         val now = LocalDateTime.of(2019,6,4,0,0,0)
         postsRepository.save(
