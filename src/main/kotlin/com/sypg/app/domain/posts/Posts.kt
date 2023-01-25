@@ -14,7 +14,7 @@ class Posts(
     title: String,
     content: String,
     author: String?
-) : BaseTimeEntity() {
+) : BaseTimeEntity() { // JPA Auditing!!
     @Id
     @GeneratedValue( // PK 생성 규칙
         strategy = GenerationType.IDENTITY) // auto_increment
