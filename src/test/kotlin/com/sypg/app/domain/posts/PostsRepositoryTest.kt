@@ -58,7 +58,7 @@ class PostsRepositoryTest ( @Autowired val postsRepository: PostsRepository) {
         //then
         val posts = postsList.get(0)
 
-        println(posts)
+        println("posts : ${posts.createdDate}, ${posts.lastModifiedDate}")
 
         Assertions.assertThat(posts.createdDate).isAfter(now)
         Assertions.assertThat(posts.lastModifiedDate).isAfter(now)
